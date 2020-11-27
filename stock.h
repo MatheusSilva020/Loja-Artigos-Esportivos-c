@@ -12,7 +12,7 @@ typedef struct stock{
 
 void cadastrarEstoque(estoque **, int);
 void modificarEstoque(estoque **, int);
-void excluirEstoque(estoque *);
+void excluirEstoque(estoque **, int);
 int checkEstoque(estoque **, int, int);
 float recebeValor(estoque **, int);
 estoque *pegarUltimoEstoque(estoque **);
