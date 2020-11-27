@@ -66,6 +66,34 @@ void modificarEstoque(estoque **lista, int codigo){
     printf("\tERRO - Estoque nao encontrado!!!\n");
   }
 }
+
+//excluirEstoque: recebe a lista de produtos e o codigo a ser removido, busca e remove da lista.
+void excluirEstoque(estoque **lista, int deleteCode){
+  estoque *p = (*lista);
+  estoque *anterior = NULL;
+  int deleted = 0;
+  
+  while((p!=NULL)&&(deleted==0)){
+  	if(p->codigo==deleteCode){
+		if(anterior==NULL){                 //Primeiro item da Lista
+			(*lista)=(*lista)->prox;		
+			p->codigo=0;
+		}else if(p->prox==NULL){           //Ultimo item da Lista
+  			anterior->prox = NULL;
+  			p->codigo=0;
+  		}else{                            //No meio da Lista
+			anterior->prox = p->prox;
+			p->codigo=0;
+		}
+		free(p);
+		deleted=1;
+	}else{
+		anterior = p;
+	}
+    p = p->prox;
+  }
+}
+/*
 //excluirEstoque: recebe o produto a ser removido e remove da lista.
 void excluirEstoque(estoque *item){
   estoque *morta = (estoque*)malloc(sizeof(estoque));
@@ -74,6 +102,7 @@ void excluirEstoque(estoque *item){
   item = morta->prox;
   free(morta);
 }
+*/
 
 //recebeValor: usado para fazer a recepcao/devolucao do valor.
 float recebeValor(estoque **lista, int codProduto){
